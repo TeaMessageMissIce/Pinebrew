@@ -2,6 +2,8 @@ package xyz.missice.pinebrew;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -23,6 +25,10 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
+import software.bernie.geckolib.renderer.GeoBlockRenderer;
+import xyz.missice.pinebrew.block.client.DeliveryBoxBlockRenderer;
+import xyz.missice.pinebrew.block.client.DeliveryBoxModel;
+import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 import xyz.missice.pinebrew.registry.ModBlockEntities;
 import xyz.missice.pinebrew.registry.ModBlocks;
 import xyz.missice.pinebrew.registry.ModItems;
@@ -96,7 +102,9 @@ public class Pinebrew {
         LOGGER.info("HELLO from server starting");
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    // 您可以使用 EventBusSubscriber 自动注册带有 @SubscribeEvent 注释的类中的所有静态方法
+    // TODO 试试把他变成一个单独的类？还是堆一起没必要？
+    //  GekoLib 的渲染有问题，放着到时候看看咋搞
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
@@ -104,6 +112,9 @@ public class Pinebrew {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            // 注册方块实体渲染器（如果是动画方块）
+            BlockEntityRenderers.register(ModBlockEntities.DELIVERY_BOX.get(),
+                    ctx -> new GeoBlockRenderer<>(new DeliveryBoxBlockRenderer()));
         }
     }
 }
