@@ -2,8 +2,6 @@ package xyz.missice.pinebrew;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -25,10 +23,6 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
-import software.bernie.geckolib.renderer.GeoBlockRenderer;
-import xyz.missice.pinebrew.block.client.DeliveryBoxBlockRenderer;
-import xyz.missice.pinebrew.block.client.DeliveryBoxModel;
-import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 import xyz.missice.pinebrew.registry.ModBlockEntities;
 import xyz.missice.pinebrew.registry.ModBlocks;
 import xyz.missice.pinebrew.registry.ModItems;
@@ -60,7 +54,9 @@ public class Pinebrew {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        ModBlocks.BLOCKS.register(modEventBus);
+//        ModBlocks.BLOCKS.register(modEventBus);
+        // 替换成新的注册方法
+        ModBlocks.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
 
@@ -113,8 +109,7 @@ public class Pinebrew {
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             // 注册方块实体渲染器（如果是动画方块）
-            BlockEntityRenderers.register(ModBlockEntities.DELIVERY_BOX.get(),
-                    ctx -> new GeoBlockRenderer<>(new DeliveryBoxBlockRenderer()));
+            BlockEntityRenderers
         }
     }
 }

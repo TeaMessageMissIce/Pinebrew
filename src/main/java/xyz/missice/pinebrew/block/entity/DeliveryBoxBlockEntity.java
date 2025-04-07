@@ -8,19 +8,21 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import software.bernie.geckolib.GeckoLib;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.util.RenderUtil;
 import xyz.missice.pinebrew.block.DeliveryBoxBlock;
 import xyz.missice.pinebrew.registry.ModBlockEntities;
 
 import java.util.UUID;
 
-public class DeliveryBoxBlockEntity extends BlockEntity implements GeoAnimatable,GeoBlockEntity {
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+public class DeliveryBoxBlockEntity extends BlockEntity implements GeoBlockEntity {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final ItemStackHandler inventory = new ItemStackHandler(256) {
         @Override
         protected int getStackLimit(int slot, ItemStack stack) {
@@ -71,7 +73,7 @@ public class DeliveryBoxBlockEntity extends BlockEntity implements GeoAnimatable
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+        return this.cache;
     }
     // 获取tick（动画播放时间）
     @Override
