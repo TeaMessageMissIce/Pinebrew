@@ -2,7 +2,6 @@ package xyz.missice.pinebrew.block;
 
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -21,7 +20,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
+import xyz.missice.pinebrew.registry.ModBlockEntities;
 
 public class DeliveryBoxBlock extends BaseEntityBlock implements EntityBlock {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
@@ -52,10 +51,9 @@ public class DeliveryBoxBlock extends BaseEntityBlock implements EntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return BlockEntityReg
+        return ModBlockEntities.DELIVERY_BOX.get().create(pos,state);
     }
 
-    // TODO 添加收货箱右键交互处理
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
