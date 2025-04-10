@@ -22,8 +22,10 @@ public class ModBlocks {
 
 
     private static <T extends Block> Supplier<T> registerBlock(String id, Function<BlockBehaviour.Properties, T> block) {
-        PinebrewPlatform COMMON_PLATFORM = ServiceLoader.load(PinebrewPlatform.class).findFirst().orElseThrow();
-        return COMMON_PLATFORM.registerBlock(id, block);
+        // 如果不打算兼容其他平台可以不考虑这个
+//        PinebrewPlatform COMMON_PLATFORM = ServiceLoader.load(PinebrewPlatform.class).findFirst().orElseThrow();
+//        return COMMON_PLATFORM.registerBlock(id, block);
+        return PinebrewPlatform.registerBlock(id, block);
     }
 
 }

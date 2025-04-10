@@ -2,6 +2,7 @@ package xyz.missice.pinebrew.registry;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import xyz.missice.pinebrew.Pinebrew;
 import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 import xyz.missice.pinebrew.platform.PinebrewPlatform;
 
@@ -18,7 +19,9 @@ public class ModBlockEntities {
 
 
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String id, Supplier<BlockEntityType<T>> blockEntity) {
-        PinebrewPlatform COMMON_PLATFORM = ServiceLoader.load(PinebrewPlatform.class).findFirst().orElseThrow();
-        return COMMON_PLATFORM.registerBlockEntity(id, blockEntity);
+        // 如果不打算兼容其他平台可以不考虑这个
+//        PinebrewPlatform COMMON_PLATFORM = ServiceLoader.load(PinebrewPlatform.class).findFirst().orElseThrow();
+//        return COMMON_PLATFORM.registerBlockEntity(id, blockEntity);
+        return PinebrewPlatform.registerBlockEntity(id, blockEntity);
     }
 }

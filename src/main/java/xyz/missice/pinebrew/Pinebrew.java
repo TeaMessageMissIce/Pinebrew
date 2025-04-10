@@ -37,11 +37,9 @@ import xyz.missice.pinebrew.registry.ModItems;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Pinebrew.MODID)
 public class Pinebrew {
-    // 在公共位置定义 mod id，以便所有内容都引用
     public static final String MODID = "pinebrew";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    // 全部的注册方法
     //声音相关
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, MODID);
 
@@ -54,14 +52,19 @@ public class Pinebrew {
     // 实体相关
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, MODID);
 
-    // 创造标签？（不知道是不是创造物品栏上面那个）
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // 物品相关
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, MODID);
 
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> Pinebrew_TAB = CREATIVE_TABS.register("pinebrew_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.pinebrew")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> ModBlocks.DELIVERY_BOX.get().asItem().getDefaultInstance()).displayItems((parameters, output) -> {
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> Pinebrew_TAB = CREATIVE_TABS.register("pinebrew_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.pinebrew"))
+            .withTabsBefore(CreativeModeTabs.COMBAT)
+            .icon(() -> ModBlocks.DELIVERY_BOX.get()
+                    .asItem()
+                    .getDefaultInstance()
+            ).displayItems((parameters, output) -> {
         output.accept(ModBlocks.DELIVERY_BOX.get());
     }).build());
 

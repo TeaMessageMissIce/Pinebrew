@@ -25,34 +25,34 @@ public class PinebrewPlatform {
      * mod的所有东西都走这个类
      */
 
-    public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String id, Supplier<BlockEntityType<T>> blockEntityType) {
+    public static <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String id, Supplier<BlockEntityType<T>> blockEntityType) {
         return Pinebrew.BLOCK_ENTITIES.register(id, blockEntityType);
     }
 
 
-    public <T extends Block> Supplier<T> registerBlock(String id, Function<BlockBehaviour.Properties, T> block) {
+    public static <T extends Block> Supplier<T> registerBlock(String id, Function<BlockBehaviour.Properties, T> block) {
         return Pinebrew.BLOCKS.register(id, () -> block.apply(BlockBehaviour.Properties.of()
                 .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, id)))));
     }
 
 
-    public <T extends Entity> Supplier<EntityType<T>> registerEntity(String id, Supplier<EntityType<T>> entity) {
+    public static <T extends Entity> Supplier<EntityType<T>> registerEntity(String id, Supplier<EntityType<T>> entity) {
         return Pinebrew.ENTITIES.register(id, entity);
     }
 
 
-    public <T extends Item> Supplier<T> registerItem(String id, Function<Item.Properties, T> item) {
+    public static <T extends Item> Supplier<T> registerItem(String id, Function<Item.Properties, T> item) {
         return Pinebrew.ITEMS.register(id, () -> item.apply(new Item.Properties()
                 .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, id)))));
     }
 
 
-    public <T extends SoundEvent> Supplier<T> registerSound(String id, Supplier<T> sound) {
+    public static <T extends SoundEvent> Supplier<T> registerSound(String id, Supplier<T> sound) {
         return Pinebrew.SOUND_EVENTS.register(id, sound);
     }
 
 
-    public <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab) {
+    public static <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab) {
         return Pinebrew.CREATIVE_TABS.register(id, tab);
     }
 
