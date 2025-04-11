@@ -66,6 +66,7 @@ public class Pinebrew {
                     .getDefaultInstance()
             ).displayItems((parameters, output) -> {
         output.accept(ModBlocks.DELIVERY_BOX.get());
+        output.accept(ModItems.DELIVERY_BOX_ITEM.get());
     }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -83,6 +84,7 @@ public class Pinebrew {
         ITEMS.register(modEventBus);
         ModBlockEntities.init();
         ModBlocks.init();
+        ModItems.init();
 
         // 注册我们感兴趣的服务器和其他游戏活动。
         // 请注意，当且仅当我们希望 *this* 类 （Pinebrew） 直接响应事件时，这才是必需的。
