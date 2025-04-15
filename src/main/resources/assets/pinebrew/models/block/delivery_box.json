@@ -1,5 +1,61 @@
 {
+  "credit": "Made with Blockbench",
+  "parent": "builtin/entity",
+  "texture_size": [
+    128,
+    128
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "scale": [
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0.5,
+        -4.25,
+        0
+      ],
+      "scale": [
+        0.415,
+        0.415,
+        0.415
+      ]
+    },
+    "fixed": {
+      "translation": [
+        -1.5,
+        -6.5,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
   "textures": {
-    "particle": "minecraft:block/glass"
+    "particle": "item/delivery_box"
   }
 }

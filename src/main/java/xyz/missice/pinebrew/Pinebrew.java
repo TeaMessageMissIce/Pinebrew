@@ -66,7 +66,6 @@ public class Pinebrew {
                     .getDefaultInstance()
             ).displayItems((parameters, output) -> {
         output.accept(ModBlocks.DELIVERY_BOX.get());
-        output.accept(ModItems.DELIVERY_BOX_ITEM.get());
     }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.

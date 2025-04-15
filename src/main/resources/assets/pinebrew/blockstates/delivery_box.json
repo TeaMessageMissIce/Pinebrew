@@ -1,5 +1,7 @@
 {
   "variants": {
-    "model": "pinebrew:block/delivery_block"
+    "": {
+      "model": "pinebrew:block/delivery_box"
+    }
   }
 }
