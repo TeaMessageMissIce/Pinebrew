@@ -27,10 +27,7 @@ public class ModBlocks {
 //        PinebrewPlatform COMMON_PLATFORM = ServiceLoader.load(PinebrewPlatform.class).findFirst().orElseThrow();
 //        return COMMON_PLATFORM.registerBlock(id, block);
         // 注册方块
-        Supplier<T> blockSupplier = PinebrewPlatform.registerBlock(id, block);
-        // 注册方块物品形式
-        PinebrewPlatform.registerItem(id, properties -> new BlockItem(blockSupplier.get(), properties));
-        return blockSupplier;
+        return PinebrewPlatform.registerBlock(id, block);
     }
 
 }

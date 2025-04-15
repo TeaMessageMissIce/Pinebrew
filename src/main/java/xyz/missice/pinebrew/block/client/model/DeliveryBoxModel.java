@@ -9,11 +9,11 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import xyz.missice.pinebrew.Pinebrew;
 import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 
-public class DeliveryBoxModel extends DefaultedBlockGeoModel<DeliveryBoxBlockEntity> {
+public class DeliveryBoxModel extends GeoModel<DeliveryBoxBlockEntity> {
 
-    public DeliveryBoxModel() {
-        super(ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "delivery_box"));
-    }
+//    public DeliveryBoxModel() {
+//        super(ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "delivery_box"));
+//    }
 
     @Override
     public ResourceLocation getModelResource(DeliveryBoxBlockEntity animatable, @Nullable GeoRenderer<DeliveryBoxBlockEntity> renderer) {

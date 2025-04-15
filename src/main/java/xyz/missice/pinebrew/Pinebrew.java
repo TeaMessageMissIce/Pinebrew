@@ -29,6 +29,8 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
+import software.bernie.geckolib.GeckoLib;
+import software.bernie.geckolib.util.GeckoLibUtil;
 import xyz.missice.pinebrew.block.client.PinebrewClient;
 import xyz.missice.pinebrew.registry.ModBlockEntities;
 import xyz.missice.pinebrew.registry.ModBlocks;
@@ -66,6 +68,7 @@ public class Pinebrew {
                     .getDefaultInstance()
             ).displayItems((parameters, output) -> {
         output.accept(ModBlocks.DELIVERY_BOX.get());
+        output.accept(ModItems.DELIVERY_BOX.get());
     }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -73,6 +76,7 @@ public class Pinebrew {
     public Pinebrew(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+
 
         // 替换成新的注册方法
         SOUND_EVENTS.register(modEventBus);

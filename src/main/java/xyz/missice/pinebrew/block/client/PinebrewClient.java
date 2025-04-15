@@ -16,6 +16,6 @@ public class PinebrewClient {
     public static void registerRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> entityRenderers,
                                          BiConsumer<BlockEntityType<? extends BlockEntity>, BlockEntityRendererProvider> blockEntityRenderers) {
 
-        blockEntityRenderers.accept(ModBlockEntities.DELIVERY_BOX.get(), context -> new DeliveryBoxBlockRenderer());
+        blockEntityRenderers.accept(ModBlockEntities.DELIVERY_BOX.get(),  DeliveryBoxBlockRenderer:: new);
     }
 }
