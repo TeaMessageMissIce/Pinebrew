@@ -3,6 +3,7 @@ package xyz.missice.pinebrew.block.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,7 +14,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.util.RenderUtil;
-import xyz.missice.pinebrew.registry.ModBlockEntities;
+import xyz.missice.pinebrew.registry.BlockEntitiesRegistry;
 
 import java.util.UUID;
 
@@ -39,7 +40,7 @@ public class DeliveryBoxBlockEntity extends BlockEntity implements GeoBlockEntit
     private UUID owner = UUID.fromString("00000000-0000-0000-0000-000000000000");
 
     public DeliveryBoxBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.DELIVERY_BOX.get(), pos, blockState);
+        super(BlockEntitiesRegistry.DELIVERY_BOX.get(), pos, blockState);
     }
 
     @Override
@@ -62,9 +63,25 @@ public class DeliveryBoxBlockEntity extends BlockEntity implements GeoBlockEntit
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
     // 动画播放的条件 传入动画名称“第四行那个” 播放方式,循环
-    private PlayState predicate(AnimationState<DeliveryBoxBlockEntity> deliveryBoxBlockEntityAnimationState) {
-        deliveryBoxBlockEntityAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.model.deliveryBox", Animation.LoopType.LOOP));
-        return PlayState.CONTINUE;
+    public boolean isOpen = false; // Tracks the current state
+
+    private PlayState predicate(AnimationState<DeliveryBoxBlockEntity> state) {
+        if (state.getAnimatable().getLevel() != null) {
+            // 获取玩家
+            Player player = state.getAnimatable().getLevel().getNearestPlayer(this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), 3, false);
+            if (player != null) {
+                // 玩家靠近，播放正向动画
+                isOpen = true;
+                state.getController().setAnimation(RawAnimation.begin().then("animation.model.openDeliveryBox", Animation.LoopType.HOLD_ON_LAST_FRAME));
+                return PlayState.CONTINUE;
+            } else {
+                // 玩家离开，播放倒放动画
+                isOpen = false;
+                state.getController().setAnimation(RawAnimation.begin().then("animation.model.closeDeliveryBox", Animation.LoopType.PLAY_ONCE));
+                return PlayState.CONTINUE;
+            }
+        }
+        return PlayState.STOP;
     }
 
     @Override

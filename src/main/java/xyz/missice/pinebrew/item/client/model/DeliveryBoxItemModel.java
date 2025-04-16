@@ -20,6 +20,6 @@ public class DeliveryBoxItemModel extends GeoModel<DeliveryBoxItem> {
 
     @Override
     public ResourceLocation getAnimationResource(DeliveryBoxItem animatable) {
-        return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "animations/delivery_box.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "animations/open_delivery_box.animation.json");
     }
 }

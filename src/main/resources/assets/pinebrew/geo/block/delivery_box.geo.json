@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.deliveryBox",
+				"identifier": "geometry.delivery_box",
 				"texture_width": 128,
 				"texture_height": 128,
 				"visible_bounds_width": 4,
@@ -16,7 +16,7 @@
 					"pivot": [0, 0, 0],
 					"cubes": [
 						{
-							"origin": [-18, 0, -10],
+							"origin": [-24, 0, -10],
 							"size": [32, 20, 20],
 							"uv": {
 								"north": {"uv": [0, 0], "uv_size": [32, 20]},
@@ -59,7 +59,7 @@
 					"pivot": [-2, 20, 10],
 					"cubes": [
 						{
-							"origin": [-5, 20, -11],
+							"origin": [-11, 20, -11],
 							"size": [6, 4, 1],
 							"uv": {
 								"north": {"uv": [54, 57], "uv_size": [6, 4]},
@@ -71,7 +71,7 @@
 							}
 						},
 						{
-							"origin": [-18, 20, -10],
+							"origin": [-24, 20, -10],
 							"size": [32, 4, 20],
 							"uv": {
 								"north": {"uv": [54, 42], "uv_size": [32, 4]},

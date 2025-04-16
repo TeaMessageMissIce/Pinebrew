@@ -2,19 +2,17 @@ package xyz.missice.pinebrew.registry;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import xyz.missice.pinebrew.Pinebrew;
 import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 import xyz.missice.pinebrew.platform.PinebrewPlatform;
 
-import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class ModBlockEntities {
+public class BlockEntitiesRegistry {
     public static void init() {}
 
     public static final Supplier<BlockEntityType<DeliveryBoxBlockEntity>> DELIVERY_BOX = registerBlockEntity("delivery_box",
-            () -> new BlockEntityType<>(DeliveryBoxBlockEntity::new, Set.of(ModBlocks.DELIVERY_BOX.get()))
+            () -> new BlockEntityType<>(DeliveryBoxBlockEntity::new, Set.of(BlockRegistry.DELIVERY_BOX.get()))
     );
 
 

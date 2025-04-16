@@ -7,7 +7,7 @@ import xyz.missice.pinebrew.block.client.model.DeliveryBoxModel;
 import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 
 public class DeliveryBoxBlockRenderer extends GeoBlockRenderer<DeliveryBoxBlockEntity> {
-    public DeliveryBoxBlockRenderer(BlockEntityRendererProvider.Context context) {
+    public DeliveryBoxBlockRenderer() {
         super(new DeliveryBoxModel());
     }
 }

@@ -1,16 +1,14 @@
 package xyz.missice.pinebrew.registry;
 
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import xyz.missice.pinebrew.block.DeliveryBoxBlock;
 import xyz.missice.pinebrew.platform.PinebrewPlatform;
 
-import java.util.ServiceLoader;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class ModBlocks {
+public class BlockRegistry {
     public static void init() {}
     public static final Supplier<DeliveryBoxBlock> DELIVERY_BOX = registerBlock("delivery_box",
             properties -> new DeliveryBoxBlock(properties

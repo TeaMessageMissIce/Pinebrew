@@ -9,26 +9,21 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import xyz.missice.pinebrew.Pinebrew;
 import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 
-public class DeliveryBoxModel extends GeoModel<DeliveryBoxBlockEntity> {
+public class DeliveryBoxModel extends DefaultedBlockGeoModel<DeliveryBoxBlockEntity> {
 
-//    public DeliveryBoxModel() {
-//        super(ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "delivery_box"));
-//    }
-
-    @Override
-    public ResourceLocation getModelResource(DeliveryBoxBlockEntity animatable, @Nullable GeoRenderer<DeliveryBoxBlockEntity> renderer) {
-        return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "geo/delivery_box.geo.json");
-    }
-
-    @Override
-    public ResourceLocation getTextureResource(DeliveryBoxBlockEntity animatable, @Nullable GeoRenderer<DeliveryBoxBlockEntity> renderer) {
-        return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "textures/block/delivery_box.png");
+    public DeliveryBoxModel() {
+        super(ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "delivery_box"));
     }
 
     @Override
     public ResourceLocation getAnimationResource(DeliveryBoxBlockEntity animatable) {
-        return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "animations/delivery_box.animation.json");
-    }
+        if (animatable.isOpen) {
+            // Return the animation resource for the "open" animation
+            return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "animations/open_delivery_box.animation.json");
+        } else {
+            // Return the animation resource for the "close" animation
+            return ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "animations/close_delivery_box.animation.json");
+        }}
 
     @Override
     public @Nullable RenderType getRenderType(DeliveryBoxBlockEntity animatable, ResourceLocation texture) {

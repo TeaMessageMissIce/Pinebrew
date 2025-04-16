@@ -23,7 +23,6 @@ public class DeliveryBoxItem extends BlockItem implements GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public DeliveryBoxItem(Block block, Properties properties) {
         super(block, properties);
-        SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 
 
@@ -34,7 +33,7 @@ public class DeliveryBoxItem extends BlockItem implements GeoItem {
             @Override
             public @Nullable GeoItemRenderer<DeliveryBoxItem> getGeoItemRenderer() {
                 if (this.renderer == null) {
-                    this.renderer = new DeliveryBoxItemRenderer();
+                    this.renderer =  new GeoItemRenderer<>(new DefaultedBlockGeoModel<>(ResourceLocation.fromNamespaceAndPath(Pinebrew.MODID, "delivery_box")));
                 }
                 return this.renderer;
             }
@@ -52,8 +51,4 @@ public class DeliveryBoxItem extends BlockItem implements GeoItem {
         return this.cache;
     }
 
-    @Override
-    public double getTick(Object itemStack) {
-        return RenderUtil.getCurrentTick();
-    }
 }

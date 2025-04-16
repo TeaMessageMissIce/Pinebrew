@@ -29,12 +29,10 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
-import software.bernie.geckolib.GeckoLib;
-import software.bernie.geckolib.util.GeckoLibUtil;
 import xyz.missice.pinebrew.block.client.PinebrewClient;
-import xyz.missice.pinebrew.registry.ModBlockEntities;
-import xyz.missice.pinebrew.registry.ModBlocks;
-import xyz.missice.pinebrew.registry.ModItems;
+import xyz.missice.pinebrew.registry.BlockEntitiesRegistry;
+import xyz.missice.pinebrew.registry.BlockRegistry;
+import xyz.missice.pinebrew.registry.ItemRegistry;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Pinebrew.MODID)
@@ -63,12 +61,12 @@ public class Pinebrew {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> Pinebrew_TAB = CREATIVE_TABS.register("pinebrew_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.pinebrew"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> ModBlocks.DELIVERY_BOX.get()
+            .icon(() -> BlockRegistry.DELIVERY_BOX.get()
                     .asItem()
                     .getDefaultInstance()
             ).displayItems((parameters, output) -> {
-        output.accept(ModBlocks.DELIVERY_BOX.get());
-        output.accept(ModItems.DELIVERY_BOX.get());
+        output.accept(BlockRegistry.DELIVERY_BOX.get());
+        output.accept(ItemRegistry.DELIVERY_BOX.get());
     }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -85,9 +83,9 @@ public class Pinebrew {
         ENTITIES.register(modEventBus);
         CREATIVE_TABS.register(modEventBus);
         ITEMS.register(modEventBus);
-        ModBlockEntities.init();
-        ModBlocks.init();
-        ModItems.init();
+        BlockEntitiesRegistry.init();
+        BlockRegistry.init();
+        ItemRegistry.init();
 
         // 注册我们感兴趣的服务器和其他游戏活动。
         // 请注意，当且仅当我们希望 *this* 类 （Pinebrew） 直接响应事件时，这才是必需的。
