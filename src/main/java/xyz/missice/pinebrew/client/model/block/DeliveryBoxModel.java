@@ -1,11 +1,9 @@
-package xyz.missice.pinebrew.block.client.model;
+package xyz.missice.pinebrew.client.model.block;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.DefaultedBlockGeoModel;
-import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.renderer.GeoRenderer;
 import xyz.missice.pinebrew.Pinebrew;
 import xyz.missice.pinebrew.block.entity.DeliveryBoxBlockEntity;
 

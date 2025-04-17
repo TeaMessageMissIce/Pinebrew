@@ -1,5 +1,6 @@
 {
+  "ambientocclusion": false,
   "textures": {
-    "particle": "minecraft:block/glass"
+    "particle": "item/delivery_box"
   }
 }

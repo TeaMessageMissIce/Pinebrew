@@ -29,7 +29,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
-import xyz.missice.pinebrew.block.client.PinebrewClient;
+import xyz.missice.pinebrew.client.PinebrewClient;
 import xyz.missice.pinebrew.registry.BlockEntitiesRegistry;
 import xyz.missice.pinebrew.registry.BlockRegistry;
 import xyz.missice.pinebrew.registry.ItemRegistry;
@@ -83,8 +83,8 @@ public class Pinebrew {
         ENTITIES.register(modEventBus);
         CREATIVE_TABS.register(modEventBus);
         ITEMS.register(modEventBus);
-        BlockEntitiesRegistry.init();
         BlockRegistry.init();
+        BlockEntitiesRegistry.init();
         ItemRegistry.init();
 
         // 注册我们感兴趣的服务器和其他游戏活动。

@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "pinebrew:item/delivery_box",
+    "model": {
+      "type": "geckolib:geckolib"
+    }
+  }
+}
