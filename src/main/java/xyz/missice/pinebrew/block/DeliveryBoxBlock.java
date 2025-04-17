@@ -74,59 +74,9 @@ public class DeliveryBoxBlock extends BaseEntityBlock implements EntityBlock {
             default -> Block.box(0, 0, 0, 16, 16, 32);
         };
     }
-    // 判断能否放置方块
-    @Override
-    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        VoxelShape shape = this.getShape(state, world, pos, CollisionContext.empty());
 
-        // Check all positions covered by the bounding box
-        for (BlockPos blockPos : shape.toAabbs().stream()
-                .flatMap(aabb -> BlockPos.betweenClosedStream(aabb.move(pos)))
-                .toList()) {
-            BlockState blockState = world.getBlockState(blockPos);
-            if (!blockState.isAir() && !blockState.canBeReplaced()) {
-                return false; // If any block is non-replaceable, placement fails
-            }
 
-        }
-        return true;
-    }
 
-    // 可以替换雪片
-    @Override
-    protected boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
-        if (context == null || context.getLevel() == null) {
-            return false;
-        }
-
-        Level level = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        VoxelShape shape = this.getShape(state, level, pos, CollisionContext.empty());
-
-        // 遍历碰撞箱覆盖的所有方块位置
-        for (BlockPos blockPos : shape.toAabbs().stream()
-                .flatMap(aabb -> BlockPos.betweenClosedStream(aabb.move(pos)))
-                .toList()) {
-            BlockState blockState = level.getBlockState(blockPos);
-            if (!blockState.isAir() && !blockState.canBeReplaced(context)) {
-                return false; // 如果有任何方块不可替换，则返回 false
-            }
-        }
-
-        return true; // 所有方块都可替换
-    }
-
-    @Override
-    protected void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-        super.onRemove(state, world, pos, newState, isMoving);
-        if (!state.is(newState.getBlock())) {
-            Direction facing = state.getValue(FACING);
-            BlockPos sidePos = pos.relative(facing.getOpposite());
-            if (world.getBlockState(sidePos).is(this)) {
-                world.destroyBlock(sidePos, false); // Destroy the second part of the block
-            }
-        }
-    }
 
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
